@@ -1,9 +1,10 @@
-$(document).ready( function() {
-	console.log(window.location.search);
-	var param = window.location.search.substring(1);
-	param[0].split("=");
-	var username = param[1]
-	console.log("Logged in user:" +username);
-	$('.header-user').append(username);
-	
+$(document).ready(function() {
+	$('.header-right-text').append(" "+GetUsernameFromURL());
 });
+
+function GetUsernameFromURL() {
+	var sURLParam = window.location.search.substring(1);
+	var sParameter = sURLParam.split("=");
+	console.log("User logged in: " + sParameter[1]);
+	return sParameter[1];
+}

@@ -1,4 +1,4 @@
-$(document).on('click', '.loginbtn', function() {
+$(document).on('click', '.loginBtn', function() {
 
 	var username = document.getElementById("username").value;
 	if (username) {
