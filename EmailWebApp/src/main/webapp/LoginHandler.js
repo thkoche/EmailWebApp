@@ -4,4 +4,7 @@ $(document).on('click', '.loginBtn', function() {
 	if (username) {
 		window.location = "http://localhost:8080/EmailWebApp/app.html?username=" + username;
 	}
+	$.ajax({
+        url: "http://localhost:8080/EmailWebApp/rest/service/login/"+GetUsernameFromURL()
+    })
 });

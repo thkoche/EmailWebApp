@@ -16,21 +16,6 @@ public class RestService {
 
 	Gson gson = new Gson();
 	
-	/**
-	 * Method handling HTTP GET requests. The returned object will be sent to the
-	 * client as "text/plain" media type.
-	 * 
-	 * call: http://localhost:8080/EmailWebApp/rest/service
-	 *
-	 * @return String that will be returned as a text/plain response.
-	 */
-//	@GET
-//	@Path("/getHistory")
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String getIt() {
-//		return "Hello from rest service";
-//	}
-	
 	@GET
 	@Path("/getHistory")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -48,4 +33,13 @@ public class RestService {
         return email;
     }
 
+	@GET
+    @Path("/login/{username}")
+    public String loginUser(@PathParam("username") String username) {
+        //TODO
+		//If user is already in db, then do nothing
+		//else insert new user with "username"
+		
+		return "";
+    }
 }
