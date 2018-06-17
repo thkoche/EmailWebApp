@@ -43,7 +43,7 @@ public class RestService {
     @Path("/getEmailByUsername/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
     public String getEmailByUsername(@PathParam("username") String username) {
-        String email = gson.toJson(new Email(0, "Hello there", "Daily Gretting", null));
+        String email = gson.toJson(new Email(0, "Hello there", "Daily Gretting", null, 0));
         System.out.println("Requested:" +email);
         return email;
     }
