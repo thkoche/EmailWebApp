@@ -1,5 +1,8 @@
 package app.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,6 +25,22 @@ public class RestService {
 	public String getIt() {
 		String UserAsJsonString = gson.toJson(new User(12,"Manfred"));
 		return UserAsJsonString;
+	}
+	
+	@GET
+	@Path("/getHistoryByUsername/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getHistoryByUsername(@PathParam("username") String username) {
+		List<Email> emails = new ArrayList();
+		String emailsAsJson = "[";
+		//TODO insert emails from db into "emails"-Arraylist as email-object
+	
+		
+		//Test data (remove after finised todo
+		emails.add(new Email(0, "Hello There", "MeEmail1", null));
+		emails.add(new Email(0, "General Kenboi!", "MeEmail2", null));
+		emails.add(new Email(0, "suuuushi is good", "About sushi", null));
+		return gson.toJson(emails);
 	}
 	
 	@GET
