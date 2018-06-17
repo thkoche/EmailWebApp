@@ -93,7 +93,6 @@ body {
    	margin-right: 10px;
    	margin-top:10px;
    	margin-bottom:2px;
-   	
     cursor: pointer;
 }
 
@@ -106,7 +105,7 @@ body {
 	float: left;
 	height: 90%;
 	width: 100%;
-	background-color: yellow;
+	background-color: white;
 }
 
 .email-container {
@@ -124,11 +123,26 @@ body {
 
 .display {
 	float: right;
-	width: 70%;
+	width: 69.97%;
 	height: 100%;
 	background: green;
+	border-left: 1px;
+	border-left-style: solid;
 }
 
+.display-buttons {
+	float: left;
+	height: 10%;
+	width: 100%;
+	background-color: white;
+}
+
+.display-email {
+	float: left;
+	height: 90%;
+	width: 100%;
+	background-color: white;
+}
 .footerline {
 	float:left;
 	width: 100%;
