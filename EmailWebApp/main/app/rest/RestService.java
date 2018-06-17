@@ -37,9 +37,9 @@ public class RestService {
 	
 		
 		//Test data (remove after finised todo
-		emails.add(new Email(0, "Hello There", "MeEmail1", null));
-		emails.add(new Email(0, "General Kenboi!", "MeEmail2", null));
-		emails.add(new Email(0, "suuuushi is good", "About sushi", null));
+		emails.add(new Email(0, "Hello There", "MeEmail1", null, 0));
+		emails.add(new Email(0, "General Kenboi!", "MeEmail2", null, 0));
+		emails.add(new Email(0, "suuuushi is good", "About sushi", null, 0));
 		return gson.toJson(emails);
 	}
 	
