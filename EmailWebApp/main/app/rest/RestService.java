@@ -35,9 +35,11 @@ public class RestService {
 
 	@GET
     @Path("/login/{username}")
-    public void loginUser(@PathParam("username") String username) {
+    public String loginUser(@PathParam("username") String username) {
         //TODO
 		//If user is already in db, then do nothing
 		//else insert new user with "username"
+		
+		return "";
     }
 }
