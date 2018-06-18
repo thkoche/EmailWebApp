@@ -101,4 +101,15 @@ public class DBConn {
 		stm.execute();
 	}
 	
+	public List<String> getEmailAddresses() throws SQLException {
+		String sql = "select emailAddress from user";
+		stm = con.prepareStatement(sql);
+		ResultSet rs = stm.executeQuery();
+		ArrayList<String> emails = new ArrayList<String>();
+		while(rs.next()) {
+			emails.add(rs.getString(1));
+		}
+		return emails;
+	}
+	
 }
