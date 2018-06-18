@@ -22,64 +22,69 @@ public class RestService {
 
 	Gson gson = new Gson();
 	DBConn dbConn;
-	
-	@GET
-	@Path("/getHistory")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getIt() {
-		String UserAsJsonString = gson.toJson(new User(12,"Manfred"));
-		return UserAsJsonString;
-	}
-	
+
 	@GET
 	@Path("/getHistoryByUsername/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getHistoryByUsername(@PathParam("username") String username) {
 		List<Email> emails = new ArrayList<Email>();
-		
+
 		try {
 			dbConn = new DBConn();
 			emails = dbConn.getEmails(username);
 		} catch (SQLException e) {
-			System.out.println("Failed to get emaillist from "+username);
+			System.out.println("Failed to get emaillist from " + username);
 			e.printStackTrace();
 		}
-		
+
 		return gson.toJson(emails);
 	}
-	
-	@GET
-    @Path("/getEmailByUsername/{username}")
-	@Produces(MediaType.APPLICATION_JSON)
-    public String getEmailByUsername(@PathParam("username") String username) { 
-//		try {
-			dbConn = new DBConn();
-			//TODO
-			//dbConn.getEmailById();
-//		} catch (SQLException e) {
-//			System.out.println("Failed to get emaillist from "+username);
-//			e.printStackTrace();
-//		}
-        String email = gson.toJson(new Email(0, "Hello there", "Daily Gretting", null, 0));
-        System.out.println("Requested:" +email);
-        return email;
-    }
 
 	@GET
-    @Path("/login/{username}")
+	@Path("/showEmail/{emailId}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public String loginUser(@PathParam("username") String username) {
+	public String showEmail(@PathParam("emailId") int emailId) {
+		Email email = null;
+		// try {
+		dbConn = new DBConn();
+		// TODO
+		// email = dbConn.getEmailById(emailId);
+		// } catch (SQLException e) {
+		// System.out.println("Failed to get emaillist from "+username);
+		// e.printStackTrace();
+		// }
+		return gson.toJson(email);
+	}
+
+	@GET
+	@Path("/login/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String loginUser(@PathParam("username") String username) {
 		try {
+			/* load driver on login */
 			Class.forName("com.mysql.jdbc.Driver");
 			dbConn = new DBConn();
 			dbConn.insertUser(username);
-			System.out.println("New user "+username+" created!");
+			System.out.println("New user " + username + " created!");
 		} catch (SQLException e) {
-			System.out.println("User "+username+" logged in!");
+			System.out.println("User " + username + " logged in!");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		return gson.toJson(new User(1, username));
-    }
+		return "{}";
+	}
+	
+	@GET
+	@Path("/deleteEmail/{username}/{emailId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String deleteEmail(@PathParam("username") String username, @PathParam("emailId") int emailId) {
+		try {
+			dbConn = new DBConn();
+			//dbConn.deleteEmail(emailId, username);
+			System.out.println("Deleted Email: "+emailId+" for "+username);
+		} catch (Exception e) { //Replace with "SQL"Exception...
+			System.out.println("Failed to delete email: "+emailId+" for "+username);
+		}
+		return "{}";
+	}
 }
