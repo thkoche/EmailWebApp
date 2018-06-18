@@ -33,15 +33,9 @@ public class DBConn {
 		stm.execute();
 	}
 	
-<<<<<<< HEAD
-	//TODO sender to username
-	public void sendEmail(Email email, int sender) throws SQLException {
-		String sql = "insert into email(id, message, title, user_id) values(?, ?, ?, ?);";
-=======
 	public void sendEmail(Email email, String name) throws SQLException {
 		int id = getUserId(name);
 		String sql = "insert into email(message, title, user_id) values(?, ?, ?);";
->>>>>>> branch 'master' of https://github.com/thkoche/EmailWebApp.git
 		stm = con.prepareStatement(sql);
 		stm.setString(1, email.getMessage());
 		stm.setString(2, email.getTitle());
@@ -89,10 +83,6 @@ public class DBConn {
 		return rs.getString(1);
 	}
 	
-<<<<<<< HEAD
-	//TODO user to username, email to email_id
-	public void deleteEmail(Email email, User user) throws SQLException {
-=======
 	private int getUserId(String name) throws SQLException {
 		String sql = "select id from user where name = ?;";
 		stm = con.prepareStatement(sql);
@@ -104,7 +94,6 @@ public class DBConn {
 	
 	public void deleteEmail(int email_id, String name) throws SQLException {
 		int id = getUserId(name);
->>>>>>> branch 'master' of https://github.com/thkoche/EmailWebApp.git
 		String sql = "delete from receiver where user_id = ? and email_id = ?;";
 		stm = con.prepareStatement(sql);
 		stm.setInt(1, id);
