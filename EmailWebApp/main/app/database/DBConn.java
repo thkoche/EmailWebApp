@@ -16,8 +16,13 @@ public class DBConn {
 	private Connection con;
 	private PreparedStatement stm;
 	
-	public DBConn() throws SQLException {
-		con = DriverManager.getConnection("jdbc:mysql://localhost/emailwebapp?user=root&password=root");
+	public DBConn() {
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/emailwebapp?user=root&password=root");
+		} catch (SQLException e) {
+			System.out.println("Failed to connect to db");
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertUser(String name) throws SQLException {
