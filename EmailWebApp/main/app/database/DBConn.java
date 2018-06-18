@@ -20,12 +20,11 @@ public class DBConn {
 		con = DriverManager.getConnection("jdbc:mysql://localhost/emailwebapp?user=root&password=root");
 	}
 	
-	public void insertUser(User user) throws SQLException {
-		String sql = "insert into user(id, name, emailAddress) values(?, ?, ?);";
+	public void insertUser(String name) throws SQLException {
+		String sql = "insert into user(name, emailAddress) values(?, ?);";
 		stm = con.prepareStatement(sql);
-		stm.setInt(1, user.getId());
-		stm.setString(2, user.getName());
-		stm.setString(3, user.getEmailAddress());
+		stm.setString(1, name);
+		stm.setString(1, name + "@aau-g4.at");
 		stm.execute();
 	}
 	
