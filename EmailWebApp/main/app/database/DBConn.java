@@ -53,12 +53,12 @@ public class DBConn {
 		
 	}
 	
-	public List<Email> getEmails(User user) throws SQLException {
+	public List<Email> getEmails(String name) throws SQLException {
 		ArrayList<Email> emails = new ArrayList<Email>();
 		
-		String sql = "select * from email where email.id in (select email_id from receiver where ? = receiver.user_id);";
+		String sql = "select * from email where email.id in (select email_id from receiver where receiver.user_id = (select id from user where name = ?));";
 		stm = con.prepareStatement(sql);
-		stm.setInt(1, user.getId());
+		stm.setString(1, name);
 		
 		ResultSet rs = stm.executeQuery();
 		while(rs.next()) {
