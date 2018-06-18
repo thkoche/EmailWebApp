@@ -33,13 +33,13 @@ public class DBConn {
 		stm.execute();
 	}
 	
-	public void sendEmail(Email email, int sender) throws SQLException {
-		String sql = "insert into email(id, message, title, user_id) values(?, ?, ?, ?);";
+	public void sendEmail(Email email, String name) throws SQLException {
+		int id = getUserId(name);
+		String sql = "insert into email(message, title, user_id) values(?, ?, ?);";
 		stm = con.prepareStatement(sql);
-		stm.setInt(1, email.getId());
-		stm.setString(2, email.getMessage());
-		stm.setString(3, email.getTitle());
-		stm.setInt(4, sender);
+		stm.setString(1, email.getMessage());
+		stm.setString(2, email.getTitle());
+		stm.setInt(3, id);
 		stm.execute();
 		
 		sql = "select max(id) from email";
@@ -83,11 +83,21 @@ public class DBConn {
 		return rs.getString(1);
 	}
 	
-	public void deleteEmail(Email email, User user) throws SQLException {
+	private int getUserId(String name) throws SQLException {
+		String sql = "select id from user where name = ?;";
+		stm = con.prepareStatement(sql);
+		stm.setString(1, name);
+		ResultSet rs = stm.executeQuery();
+		rs.next();
+		return rs.getInt(1);
+	}
+	
+	public void deleteEmail(int email_id, String name) throws SQLException {
+		int id = getUserId(name);
 		String sql = "delete from receiver where user_id = ? and email_id = ?;";
 		stm = con.prepareStatement(sql);
-		stm.setInt(1, user.getId());
-		stm.setInt(2, email.getId());
+		stm.setInt(1, id);
+		stm.setInt(2, email_id);
 		stm.execute();
 	}
 	
