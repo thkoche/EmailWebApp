@@ -29,7 +29,7 @@ public class DBConn {
 		String sql = "insert into user(name, emailAddress) values(?, ?);";
 		stm = con.prepareStatement(sql);
 		stm.setString(1, name);
-		stm.setString(1, name + "@aau-g4.at");
+		stm.setString(2, name + "@aau-g4.at");
 		stm.execute();
 	}
 	

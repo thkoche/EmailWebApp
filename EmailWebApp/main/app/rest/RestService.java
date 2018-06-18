@@ -21,7 +21,7 @@ import app.entities.User;
 public class RestService {
 
 	Gson gson = new Gson();
-	DBConn dbConn = new DBConn();
+	DBConn dbConn;
 	
 	@GET
 	@Path("/getHistory")
@@ -38,18 +38,28 @@ public class RestService {
 		List<Email> emails = new ArrayList<Email>();
 		
 		try {
+			dbConn = new DBConn();
 			emails = dbConn.getEmails(username);
 		} catch (SQLException e) {
 			System.out.println("Failed to get emaillist from "+username);
 			e.printStackTrace();
 		}
+		
 		return gson.toJson(emails);
 	}
 	
 	@GET
     @Path("/getEmailByUsername/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public String getEmailByUsername(@PathParam("username") String username) {
+    public String getEmailByUsername(@PathParam("username") String username) { 
+//		try {
+			dbConn = new DBConn();
+			//TODO
+			//dbConn.getEmailById();
+//		} catch (SQLException e) {
+//			System.out.println("Failed to get emaillist from "+username);
+//			e.printStackTrace();
+//		}
         String email = gson.toJson(new Email(0, "Hello there", "Daily Gretting", null, 0));
         System.out.println("Requested:" +email);
         return email;
@@ -57,15 +67,19 @@ public class RestService {
 
 	@GET
     @Path("/login/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
     public String loginUser(@PathParam("username") String username) {
-		
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			dbConn = new DBConn();
 			dbConn.insertUser(username);
 			System.out.println("New user "+username+" created!");
 		} catch (SQLException e) {
 			System.out.println("User "+username+" logged in!");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		
-		return "";
+		return gson.toJson(new User(1, username));
     }
 }

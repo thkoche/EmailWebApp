@@ -28,21 +28,23 @@ $(document).on('click', '.refreshBtn', function() {
     }).then(function(data) {
     	$('.historylist-emaillist').empty();
     	for ( var email in data) {
-    		console.log("Emailtitle: "+ data[email].title);
-    		addEmailToList(data[email].title);
+    		console.log("Emailtitle: "+ data[email].title+" ID: "+data[email].id);
+    		addEmailToList(data[email].title, data[email].id);
     		
     	}
     });
 });
 
 /* adds an email to the email history list (received emails) */
-function addEmailToList(emailtitle) {
+function addEmailToList(emailtitle, emailId) {
 	var email = document.createElement("input");
 	email.classList.add("email-container");
 	email.setAttribute("type", "button");
 	email.setAttribute("value", emailtitle);
+
+	email.id = emailId;
 	var emaillist = document.getElementById("historylist-emaillist");
 	emaillist.appendChild(email);
-	console.log("Added Email:");
+	console.log("Added Email");
 }
 
