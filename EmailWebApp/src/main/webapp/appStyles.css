@@ -1,12 +1,15 @@
 @charset "ISO-8859-1";
+
 @import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+@import
+	url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+	;
 
 /*
 	Base RGB: 4B9130 
 	http://paletton.com/#uid=12I0u0kllllaFw0g0qFqFg0w0aF 
 */
-
 * {
 	font-family: 'Proxima Nova', sans-serif;
 }
@@ -20,15 +23,14 @@ body {
 	height: 100%;
 	background-color: #4A9130;
 	position: fixed;
-	
 }
+
 .headerline {
 	background-color: #4A9130;
 	position: relative;
 	width: 100%;
-	height:10%;
+	height: 10%;
 	float: left;
-
 }
 
 .header-left {
@@ -49,7 +51,7 @@ body {
 .header-right {
 	text-align: right;
 	width: 45%;
-	float: left;	
+	float: left;
 	margin-left: 25px;
 	height: 100%;
 }
@@ -65,10 +67,11 @@ body {
 .appview {
 	background-color: #cfd5db;
 	width: 100%;
-	height:85%;
+	height: 85%;
 	position: relative;
 	float: left;
 }
+
 .historylist {
 	flaot: left;
 	height: 100%;
@@ -83,25 +86,29 @@ body {
 	background-color: white;
 }
 
-.refreshBtn {
+.Btn {
 	background-color: #73B55B;
-    border: none;
-    color: white;
-    padding: 8px 50px;
-    font-size: 24px;
-   	margin-left: 10px;
-   	margin-right: 10px;
-   	margin-top:10px;
-   	margin-bottom:2px;
-    cursor: pointer;
+	border: none;
+	color: white;
+	padding: 8px 50px;
+	font-size: 24px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 2px;
+	cursor: pointer;
 }
 
-.refreshBtn:hover {
-    background-color: #A5DA91;
+.Btn:hover {
+	background-color: #A5DA91;
+}
+
+.btnFloatRight {
+	float: right;
 }
 
 .historylist-emaillist {
-	overflow-y: scroll; 
+	overflow-y: scroll;
 	float: left;
 	height: 90%;
 	width: 100%;
@@ -109,16 +116,16 @@ body {
 }
 
 .email-container {
-    background-color: white;
-    color: black;
-    width: 100%;
-    height: 150px;
-    padding-left: 25px;
-    text-align: left;
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 24px;
+	background-color: white;
+	color: black;
+	width: 100%;
+	height: 150px;
+	padding-left: 25px;
+	text-align: left;
+	display: inline-block;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 24px;
 }
 
 .display {
@@ -143,14 +150,56 @@ body {
 	width: 100%;
 	background-color: white;
 }
+
+.display-inner {
+	width: 90%;
+	height: 90%;
+	display: inline-block;
+	margin-left: 3.8%;
+	margin-top: 0.5%;
+	border-radius: 25px;
+	border: 2px solid #4B9130;
+	padding: 20px;
+}
+
+.display-newEmail {
+	
+}
+
+.display-emailDetails {
+	
+}
+
+.email-title {
+	
+}
+
+.hr-details {
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.newEmail-input {
+	width: 95%;
+	border: none;
+}
+
+textarea {
+	width: 1200px;
+	height: 520px;
+	border: none;
+	resize: none;
+}
+
 .footerline {
-	float:left;
+	float: left;
 	width: 100%;
 	height: 5%;
 	background-color: #4A9130;
 	text-align: center;
-    margin-top: 10px;
-
+	margin-top: 10px;
 }
 
 .footerlink:link, .footerlink:visited {
@@ -163,4 +212,3 @@ body {
 	font-weight: bold;
 	text-decoration: none;
 }
-

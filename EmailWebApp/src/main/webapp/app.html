@@ -24,7 +24,7 @@
 		<div class="appview">
 			<div class="historylist">
 				<div class="historylist-buttons">
-					<button class="refreshBtn">
+					<button class="Btn" id="refreshBtn">
 						Refresh <i class="fa fa-refresh"></i>
 					</button>
 					<hr>
@@ -36,15 +36,44 @@
 
 			<div class="display">
 				<div class="display-buttons">
-					<button class="refreshBtn">
-						WIP <i class="fa fa-refresh"></i>
+					<button class="Btn" id="deleteBtn">
+						Delete <i class="fa fa-trash-o"></i>
+					</button>
+					<button class="Btn btnFloatRight" id="newMailBtn">
+						New E-Mail <i class="fa fa-envelope-o"></i>
+					</button>
+					<button class="Btn btnFloatRight" id="sendBtn">
+						Send <i class="fa fa-share-square-o"></i>
 					</button>
 					<hr>
 				</div>
 
 				<div class="display-email">
-					<p class="email-title">Title:</p>
-					<p class="email-text">Message:</p>
+					<div class="display-newEmail display-inner" hidden="true">
+						Title: <input type="text" id="email-title" class="newEmail-input">
+						<hr class="hr-details">
+						To: <input list="receiverslist" id="email-receiver" class="newEmail-input">
+						<datalist id="receiverslist">
+							<option value="Chrome">
+							<option value="Firefox">
+							<option value="Internet Explorer">
+							<option value="Opera">
+							<option value="Safari">
+							<option value="Microsoft Edge">
+						</datalist>
+						<hr class="hr-details">
+								<p class="email-text">Message: </p>
+						<textarea></textarea>
+					
+							</div>
+					<div class="display-emailDetails display-inner" hidden="true">
+						<p class="email-title">Title:</p>
+						<hr class="hr-details">
+						<p class="email-sender">Send by:</p>
+						<hr class="hr-details">
+						<p class="email-text">Message:</p>
+					</div>
+
 				</div>
 			</div>
 

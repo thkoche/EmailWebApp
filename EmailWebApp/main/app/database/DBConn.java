@@ -33,6 +33,7 @@ public class DBConn {
 		stm.execute();
 	}
 	
+	//TODO sender to username
 	public void sendEmail(Email email, int sender) throws SQLException {
 		String sql = "insert into email(id, message, title, user_id) values(?, ?, ?, ?);";
 		stm = con.prepareStatement(sql);
@@ -83,6 +84,7 @@ public class DBConn {
 		return rs.getString(1);
 	}
 	
+	//TODO user to username, email to email_id
 	public void deleteEmail(Email email, User user) throws SQLException {
 		String sql = "delete from receiver where user_id = ? and email_id = ?;";
 		stm = con.prepareStatement(sql);
