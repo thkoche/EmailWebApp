@@ -1,3 +1,6 @@
+/* set ip */
+var ip = "192.168.43.131";
+
 /* Set username in header */
 $(document).ready(function() {
 	$('.header-right-text').append(" "+GetUsernameFromURL());
@@ -17,21 +20,22 @@ function GetUsernameFromURL() {
 $(document).on('click', '.email-container', function() {
 	$('.display-newEmail').hide();
 	$('.display-emailDetails').show();
-	
+	var emailId = $(this).attr('id');
+	console.log("Showing Email: " +emailId);
     $.ajax({
-        url: "http://localhost:8080/EmailWebApp/rest/service/showEmail/"+$(this).attr('id')
+        url: "http://"+ip+":8080/EmailWebApp/rest/service/showEmail/"+emailId
     }).then(function(data) {
     	$('.email-title').text("Title: "+data.title);
        $('.email-sender').text("Send by: "+data.senderId);
        $('.email-text').text("Message: "+data.message);
-       addEmailId($(this).attr('id'));
+       addEmailId(emailId);
     });
 })
 
 /* refreshed the email history list (Button listener) */
 $(document).on('click', '#refreshBtn', function() {
 	$.ajax({
-        url: "http://localhost:8080/EmailWebApp/rest/service/getHistoryByUsername/"+GetUsernameFromURL()
+        url: "http://"+ip+":8080/EmailWebApp/rest/service/getHistoryByUsername/"+GetUsernameFromURL()
     }).then(function(data) {
     	$('.historylist-emaillist').empty();
     	for ( var email in data) {
@@ -44,10 +48,12 @@ $(document).on('click', '#refreshBtn', function() {
 
 /* delete the selected email (Button listener) */
 $(document).on('click', '#deleteBtn', function() {
+	console.log("Deleting email with id: "+$('#hiddenId').attr("value"));
 	$.ajax({
-        url: "http://localhost:8080/EmailWebApp/rest/service/deleteEmail/"+GetUsernameFromURL()+"/"+$('.hiddenId').attr('id')
+        url: "http://"+ip+":8080/EmailWebApp/rest/service/deleteEmail/"+GetUsernameFromURL()+"/"+$('#hiddenId').attr("value")
     }).then(function(data) {
     	$('.display-emailDetails').hide();
+    	$( "#refreshBtn" ).trigger( "click" );
     });
 });
 
@@ -63,7 +69,7 @@ $(document).on('click', '#newMailBtn', function() {
 /* send the written email (button listener) */
 $(document).on('click', '#sendBtn', function() {
 	$.ajax({
-        url: "http://localhost:8080/EmailWebApp/rest/service/sendEmail/"+GetUsernameFromURL()+"/"+$('#email-message').val()+"/"+$('#email-title').val()+"/"+$('#email-receiver').val()
+        url: "http://"+ip+":8080/EmailWebApp/rest/service/sendEmail/"+GetUsernameFromURL()+"/"+$('#email-message').val()+"/"+$('#email-title').val()+"/"+$('#email-receiver').val()
     }).then(function(data) {
     	$('.display-newEmail').hide();
     });
@@ -85,15 +91,15 @@ function addEmailToList(emailtitle, emailId) {
 function addEmailId(emailId) {
 	var para = document.createElement("p");
 	para.setAttribute("hidden", "true");
-	para.id = emailId;
-	para.classList.add("hiddenId");
+	para.setAttribute("value", emailId);
+	para.id = "hiddenId";
 	var details = document.getElementsByClassName("display-emailDetails");
 	details[0].appendChild(para);
 }
 
 function initReceiversList() {
 	$.ajax({
-        url: "http://localhost:8080/EmailWebApp/rest/service/getReceiverList"
+        url: "http://"+ip+":8080/EmailWebApp/rest/service/getReceiverList"
     }).then(function(data) {
     	// TODO
     });

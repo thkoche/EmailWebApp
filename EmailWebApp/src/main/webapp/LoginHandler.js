@@ -1,12 +1,15 @@
+/* set ip */
+var ip = "192.168.43.131";
+
 $(document).on('click', '.loginBtn', function() {
 
-	var username = document.getElementById("username").value;
+	var username = $('#username').val();
 	console.log("User: "+username);
-	if (username) {
 		$.ajax({
-	        url: "http://localhost:8080/EmailWebApp/rest/service/login/"+username
+	        url: "http://"+ip+":8080/EmailWebApp/rest/service/login/"+username
 	    }).then(function(data) {
-	    	window.location = "http://localhost:8080/EmailWebApp/app.html?username=" + username;
+			window.location = "http://"+ip+":8080/EmailWebApp/app.html?username=" + username;
 	    });
-	}
+
+	
 });
