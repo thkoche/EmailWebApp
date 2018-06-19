@@ -112,4 +112,13 @@ public class DBConn {
 		return emails;
 	}
 	
+	public Email getEmail(int id) throws SQLException {
+		String sql = "select * from email where id = ?;";
+		stm = con.prepareStatement(sql);
+		stm.setInt(1, id);
+		ResultSet rs = stm.executeQuery();
+		rs.next();
+		return new Email(id, rs.getString(2), rs.getString(3), rs.getInt(4));
+	}
+	
 }
