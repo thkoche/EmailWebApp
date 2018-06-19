@@ -134,6 +134,7 @@ public class RestService {
 		} catch (SQLException e) {
 			System.out.println("Failed to get address list "+e);
 		}
+		System.out.println(gson.toJson(emailAddresses));
 		return gson.toJson(emailAddresses);
 	}
 }

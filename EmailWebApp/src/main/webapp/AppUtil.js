@@ -20,6 +20,7 @@ function GetUsernameFromURL() {
 $(document).on('click', '.email-container', function() {
 	$('.display-newEmail').hide();
 	$('.display-emailDetails').show();
+	$('#hiddenId').remove;
 	var emailId = $(this).attr('id');
 	console.log("Showing Email: " +emailId);
     $.ajax({
@@ -59,10 +60,12 @@ $(document).on('click', '#deleteBtn', function() {
 
 /* open the write window (button listener) */
 $(document).on('click', '#newMailBtn', function() {
+	$('#hiddenId').remove;
 	$('.display-emailDetails').hide();
 	$('.display-newEmail').show();
 	
 	// TODO init receiverslist
+	initReceiversList();
 	
 });
 
@@ -74,6 +77,7 @@ $(document).on('click', '#sendBtn', function() {
     	$('.display-newEmail').hide();
     });
 });
+
 /* adds an email to the email history list (received emails) */
 function addEmailToList(emailtitle, emailId) {
 	var email = document.createElement("input");
@@ -102,6 +106,10 @@ function initReceiversList() {
         url: "http://"+ip+":8080/EmailWebApp/rest/service/getReceiverList"
     }).then(function(data) {
     	// TODO
+
+    	jQuery.each(data, function() {
+    	  $("#receiverslist").append("<option value='" + this + "'>");;
+    	});
     });
 
 }
