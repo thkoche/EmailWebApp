@@ -83,7 +83,7 @@ public class DBConn {
 		return rs.getString(1);
 	}
 	
-	private int getUserId(String name) throws SQLException {
+	public int getUserId(String name) throws SQLException {
 		String sql = "select id from user where name = ?;";
 		stm = con.prepareStatement(sql);
 		stm.setString(1, name);

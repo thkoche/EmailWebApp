@@ -17,12 +17,13 @@ function GetUsernameFromURL() {
 $(document).on('click', '.email-container', function() {
 	$('.display-newEmail').hide();
 	$('.display-emailDetails').show();
+	
     $.ajax({
         url: "http://localhost:8080/EmailWebApp/rest/service/showEmail/"+$(this).attr('id')
     }).then(function(data) {
-       $('.email-title').append(data.title);
-       $('.email-sender').append(data.receivers);
-       $('.email-text').append(data.message);
+    	$('.email-title').text("Title: "+data.title);
+       $('.email-sender').text("Send by: "+data.senderId);
+       $('.email-text').text("Message: "+data.message);
        addEmailId($(this).attr('id'));
     });
 })
@@ -50,13 +51,22 @@ $(document).on('click', '#deleteBtn', function() {
     });
 });
 
-/* open the write window */
+/* open the write window (button listener) */
 $(document).on('click', '#newMailBtn', function() {
 	$('.display-emailDetails').hide();
 	$('.display-newEmail').show();
 	
-	//TODO init receiverslist
+	// TODO init receiverslist
 	
+});
+
+/* send the written email (button listener) */
+$(document).on('click', '#sendBtn', function() {
+	$.ajax({
+        url: "http://localhost:8080/EmailWebApp/rest/service/sendEmail/"+GetUsernameFromURL()+"/"+$('#email-message').val()+"/"+$('#email-title').val()+"/"+$('#email-receiver').val()
+    }).then(function(data) {
+    	$('.display-newEmail').hide();
+    });
 });
 /* adds an email to the email history list (received emails) */
 function addEmailToList(emailtitle, emailId) {
@@ -77,11 +87,16 @@ function addEmailId(emailId) {
 	para.setAttribute("hidden", "true");
 	para.id = emailId;
 	para.classList.add("hiddenId");
-	var details = document.getElementById("display-emailDetails");
-	details.appendChild(para);
+	var details = document.getElementsByClassName("display-emailDetails");
+	details[0].appendChild(para);
 }
 
 function initReceiversList() {
-	
+	$.ajax({
+        url: "http://localhost:8080/EmailWebApp/rest/service/getReceiverList"
+    }).then(function(data) {
+    	// TODO
+    });
+
 }
 
