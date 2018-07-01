@@ -1,0 +1,9 @@
+sudo yum install tomcat8
+sudo yum install mysql
+sudo yum install java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-devel.x86_64
+sudo yum install mysql-server
+
+/var/lib/tomcat8/webapps
+
+sudo service tomcat8 start/stop
+sudo service mysqld start/stop
