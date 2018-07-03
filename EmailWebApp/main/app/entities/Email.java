@@ -16,7 +16,7 @@ public class Email {
 		this.title = title;
 		this.receivers = receivers;
 		this.senderId = senderId;
-	}
+	}  
 	
 	public Email(int id, String message, String title, int senderId) {
 		this.id = id;

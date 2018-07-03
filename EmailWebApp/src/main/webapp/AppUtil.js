@@ -1,5 +1,5 @@
 /* set ip */
-var ip = "192.168.43.131";
+var ip = "35.158.125.40";
 
 /* Set username in header */
 $(document).ready(function() {
