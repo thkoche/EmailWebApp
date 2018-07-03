@@ -1,5 +1,5 @@
 /* set ip */
-var ip = "35.158.125.40";
+var ip = "localhost";
 
 $(document).on('click', '.loginBtn', function() {
 

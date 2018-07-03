@@ -1,5 +1,5 @@
 /* set ip */
-var ip = "35.158.125.40";
+var ip = "localhost";
 
 /* Set username in header */
 $(document).ready(function() {
@@ -63,8 +63,10 @@ $(document).on('click', '#newMailBtn', function() {
 	$('#hiddenId').remove;
 	$('.display-emailDetails').hide();
 	$('.display-newEmail').show();
-	
-	// TODO init receiverslist
+	$('#email-title').val("");
+	$('#email-receiver').val("");
+	$('#email-message').val("");
+	$('.email-text').text("Message:")
 	initReceiversList();
 	
 });
@@ -105,8 +107,6 @@ function initReceiversList() {
 	$.ajax({
         url: "http://"+ip+":8080/EmailWebApp/rest/service/getReceiverList"
     }).then(function(data) {
-    	// TODO
-
     	jQuery.each(data, function() {
     	  $("#receiverslist").append("<option value='" + this + "'>");;
     	});
